@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
+import { updateName } from "../redux/appSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let dispatch= useDispatch()
+  let navigate = useNavigate()
   const [loading, setloading] = useState(false)
     const formik = useFormik({
       initialValues: {
@@ -23,12 +28,15 @@ const Login = () => {
         })
         console.log(response.data)
         if(response.data.status){
-          alert(response.data.message)
+          // alert(response.data.message)
           console.log(response.data)
           localStorage.setItem('token', response.data.token)
 
           let user = response.data.user
+          dispatch(updateName(user.fullname))
           localStorage.setItem('user', JSON.stringify(user))
+
+          navigate('/home')
         }else{
           alert(response.data.message)
         }
