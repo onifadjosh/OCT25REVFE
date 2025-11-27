@@ -5,7 +5,8 @@ export const appSlice = createSlice({
     initialState:{
         fullname:"Guest",
         token:"",
-        todo:[]
+        todo:[],
+        id:''
     },
 
     reducers:{

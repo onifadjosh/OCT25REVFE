@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, storeTodo } from "../redux/appSlice";
+import { Link } from "react-router-dom";
 
 const Todo = () => {
   let todo = useSelector((state) => state.todo);
@@ -17,7 +18,7 @@ const Todo = () => {
       {todo.length > 0 ? (
         todo.map((todoItem, index) => (
           <div key={index}>
-            {index + 1}. {todoItem} <button className="btn btn-danger" onClick={()=>dispatch(deleteTodo(todoItem))}>delete</button>
+           <Link to={`/blog/${todoItem}`}> {index + 1}. {todoItem} <button className="btn btn-danger" onClick={()=>dispatch(deleteTodo(todoItem))}>delete</button></Link>
           </div>
         ))
       ) : (
