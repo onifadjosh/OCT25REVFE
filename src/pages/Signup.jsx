@@ -5,6 +5,19 @@ import * as yup from "yup";
 
 const Signup = () => {
     const [loading, setloading] = useState(false)
+     const [image, setImage] = useState(null);
+
+     const handleImage = (e) => {
+      console.log(e.target.files[0]);
+      let picture = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(picture)
+      reader.onloadend =() => {
+        const data = reader.result
+        console.log(data)
+        setImage(data)
+      };
+    };
     const formik = useFormik({
       initialValues: {
         firstName: "",
@@ -18,7 +31,11 @@ const Signup = () => {
         try {
           console.log(values);
         setloading(true)
-        let response = await axios.post('http://localhost:5006/api/v1/signUp', values)
+        let response = await axios.post('http://localhost:5006/api/v1/signUp', {
+          profilePicture:image,
+          ...values
+
+        })
         if(response.data.status){
           alert(response.data.message)
         }
@@ -58,6 +75,8 @@ const Signup = () => {
       <div className="mt-5 p-4">
         <h1>OSUN MFB</h1>
         <h3 className="font-monospace">Register Here:</h3>
+        <img src={image} alt=""  width={100} height={100}/> <br />
+        <input type="file" onChange={(e) => handleImage(e)} />
         <input
           type="text"
           name="firstName"
