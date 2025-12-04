@@ -31,7 +31,7 @@ const Signup = () => {
         try {
           console.log(values);
         setloading(true)
-        let response = await axios.post('http://localhost:5006/api/v1/signUp', {
+        let response = await axios.post('https://octrevbe.onrender.com/api/v1/signUp', {
           profilePicture:image,
           ...values
 

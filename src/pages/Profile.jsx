@@ -14,7 +14,7 @@ const Profile = () => {
     let token = localStorage.getItem('token')
     const fetchUser = async () => {
       try {
-        let response = await axios.get(`http://localhost:5006/api/v1/get-user/${user.id}`,{
+        let response = await axios.get(`https://octrevbe.onrender.com/api/v1/get-user/${user.id}`,{
           headers:{
               "Authorization":`Bearer ${token}`
           }
