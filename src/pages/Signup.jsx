@@ -73,7 +73,7 @@ const Signup = () => {
   // console.log(formik.touched)
     return (
       <div className="mt-5 p-4">
-        <h1>OSUN MFB</h1>
+        <h1>OSUN M</h1>
         <h3 className="font-monospace">Register Here:</h3>
         <img src={image} alt=""  width={100} height={100}/> <br />
         <input type="file" onChange={(e) => handleImage(e)} />
